@@ -1,0 +1,24 @@
+# Environment and credentials
+.env
+.env.*
+!.env.example
+
+# Dependencies / builds
+node_modules/
+.next/
+out/
+build/
+dist/
+coverage/
+.vercel/
+
+# Local tooling
+scratch/
+*.log
+*.tsbuildinfo
+.DS_Store
+.vscode/
+.idea/
+
+# Internal / agent tooling
+.agents/
