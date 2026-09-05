@@ -11,11 +11,13 @@ The showcase must not contain:
 - service-role credentials;
 - payment-provider credentials or webhook secrets;
 - Google client secrets;
-- customer, workspace, billing, or invitation data;
+- raw/private customer records, account emails, billing data, invitation data, or internal workspace exports;
 - destructive / repair scripts;
 - production migration history;
 - internal diagnostic tooling;
 - deployment configuration tied to the live product.
+
+Selected product screenshots are intentionally included for portfolio presentation. They may contain approved public-facing brand content, but screens exposing account emails, team-member contact details, billing identifiers, invitations, credentials, or other sensitive workspace information are excluded.
 
 ## Safe update process
 
@@ -30,6 +32,6 @@ Before copying new material from the private production repository into this sho
 
 ## Important distinction
 
-Code examples in this repository may be simplified or adapted for public presentation. When they differ from production, the file comments identify them as showcase-safe adaptations.
+Code examples in this repository may be simplified or adapted for public presentation. When they differ from production, the surrounding showcase documentation should make that scope clear.
 
 Security documentation here describes engineering decisions and lessons learned. It should not be interpreted as a current penetration-test result or a guarantee that the evolving private product contains no unresolved security work.
