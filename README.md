@@ -4,6 +4,10 @@ BranDo is a multi-tenant SaaS workspace for managing brand strategy, content pla
 
 > **Portfolio showcase:** this repository is a curated, sanitized snapshot of selected engineering work from a private production codebase. Production credentials, customer data, provider-specific secrets, operational scripts, database repair tooling, and deployment configuration are intentionally excluded.
 
+<p align="center">
+  <img src="assets/screenshots/landing-hero.png" alt="BranDo product landing page" width="100%" />
+</p>
+
 ## Product overview
 
 BranDo is designed around a simple product idea: a business should not have to rebuild its brand context every time it plans content, briefs a collaborator, or asks an AI tool for help.
@@ -19,6 +23,40 @@ The platform keeps a structured **Brand Hub** as the source of truth, then reuse
 - subscription-based feature and usage gating;
 - Google Calendar integration;
 - responsive Hebrew / RTL product flows.
+
+## Product preview
+
+### Workspace dashboard
+
+![BranDo workspace dashboard](assets/screenshots/dashboard.png)
+
+The dashboard combines workspace status, content activity, brand readiness and practical next actions into one operational view.
+
+### Brand system + AI-assisted workflow
+
+<p align="center">
+  <img src="assets/screenshots/brand-hub.png" alt="BranDo structured Brand Hub" width="49%" />
+  <img src="assets/screenshots/ai-studio.png" alt="BranDo AI Studio" width="49%" />
+</p>
+
+The **Brand Hub** stores structured brand context, while **Studio AI** reuses that context to generate task-specific, platform-aware prompts instead of starting from generic instructions.
+
+### Content planning + editing
+
+<p align="center">
+  <img src="assets/screenshots/content-calendar.png" alt="BranDo content calendar" width="49%" />
+  <img src="assets/screenshots/content-editor.png" alt="BranDo content editor" width="49%" />
+</p>
+
+Content is planned as part of a calendar workflow and edited through a structured content drawer with business, platform, status and reviewer context.
+
+### Branded outputs
+
+![BranDo branded export document](assets/screenshots/export-document.png)
+
+Structured brand and content data can be transformed into reusable business-facing documents and printable exports.
+
+For a feature-by-feature walkthrough, see [`docs/PRODUCT_WALKTHROUGH.md`](docs/PRODUCT_WALKTHROUGH.md).
 
 ## Product architecture
 
@@ -192,17 +230,6 @@ For interview discussion, the most useful areas are:
 
 See [`docs/ENGINEERING_CASE_STUDY.md`](docs/ENGINEERING_CASE_STUDY.md).
 
-## Screenshots
-
-Product screenshots will be added to `assets/screenshots/` after final privacy review. The strongest showcase flows are:
-
-- Dashboard
-- Brand Hub
-- Content Calendar
-- Studio AI
-- Team / permissions
-- Subscription settings
-
 ## Development status
 
 BranDo is an evolving product. The private codebase continues to change as features, permission rules, integrations, performance, and security controls are refined.
@@ -217,7 +244,7 @@ This repository intentionally excludes:
 - Supabase project identifiers and production secrets;
 - payment-provider credentials;
 - Google client secrets;
-- customer / workspace data;
+- customer / workspace data beyond intentionally selected product screenshots;
 - destructive database scripts;
 - production migration history;
 - scratch / diagnostic tooling;
