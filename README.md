@@ -1,28 +1,36 @@
-# BranDo — Brand Strategy, Content Planning & AI-Assisted SaaS
+# BranDo | Brand Strategy, Content Planning & AI-Assisted SaaS
 
-BranDo is a multi-tenant SaaS workspace for managing brand strategy, content planning, team collaboration, approvals, subscriptions, and AI-assisted content workflows from one system.
+BranDo is a **live SaaS product** for managing brand strategy, content planning, collaboration, approvals, exports, subscriptions, and AI-assisted workflows from one workspace.
 
-> **Portfolio showcase:** this repository is a curated, sanitized snapshot of selected engineering work from a private production codebase. Production credentials, customer data, provider-specific secrets, operational scripts, database repair tooling, and deployment configuration are intentionally excluded.
+I built BranDo around a product problem I repeatedly saw in content and brand work: important brand context is usually scattered between documents, chats, notes, calendars, and AI prompts. BranDo turns that fragmented process into one structured system.
+
+> **Portfolio showcase:** this repository is a curated and sanitized product case study based on the private production codebase. Production credentials, customer data, operational scripts, database repair tooling, and deployment configuration are intentionally excluded.
 
 <p align="center">
   <img src="assets/screenshots/landing-hero.png" alt="BranDo product landing page" width="100%" />
 </p>
 
-## Product overview
+## Product at a glance
 
-BranDo is designed around a simple product idea: a business should not have to rebuild its brand context every time it plans content, briefs a collaborator, or asks an AI tool for help.
+**Primary users:** social media managers, content professionals, brand consultants, small teams, and businesses managing one or more brands.
 
-The platform keeps a structured **Brand Hub** as the source of truth, then reuses that data across:
+**Core product goal:** keep brand strategy, content execution, collaboration, and AI-assisted work connected to the same source of truth.
 
-- content planning and calendar workflows;
-- AI-assisted prompt generation;
-- platform-specific content strategy;
-- client / reviewer approval flows;
-- team roles and business-level permissions;
-- exports and reusable brand documents;
-- subscription-based feature and usage gating;
-- Google Calendar integration;
-- responsive Hebrew / RTL product flows.
+The main product loop is:
+
+```text
+Set up the brand
+      ↓
+Plan content
+      ↓
+Create / refine
+      ↓
+Review and collaborate
+      ↓
+Export / publish / reuse
+      ↓
+Learn from the next cycle
+```
 
 ## Product preview
 
@@ -30,35 +38,109 @@ The platform keeps a structured **Brand Hub** as the source of truth, then reuse
 
 ![BranDo workspace dashboard](assets/screenshots/dashboard.png)
 
-The dashboard combines workspace status, content activity, brand readiness and practical next actions into one operational view.
+The dashboard brings together brand readiness, content activity, planning signals, and practical next actions. The goal is to help users understand what needs attention without opening multiple tools.
 
-### Brand system + AI-assisted workflow
+### Brand Hub and Studio AI
 
 <p align="center">
   <img src="assets/screenshots/brand-hub.png" alt="BranDo structured Brand Hub" width="49%" />
   <img src="assets/screenshots/ai-studio.png" alt="BranDo AI Studio" width="49%" />
 </p>
 
-The **Brand Hub** stores structured brand context, while **Studio AI** reuses that context to generate task-specific, platform-aware prompts instead of starting from generic instructions.
+The **Brand Hub** acts as the product's source of truth. Brand voice, audiences, services, visual language, content pillars, key messages, platform preferences, and restrictions are stored as structured data.
 
-### Content planning + editing
+**Studio AI** reuses that context so users do not have to rebuild their brand brief every time they work with an AI tool.
+
+### Content planning and editing
 
 <p align="center">
   <img src="assets/screenshots/content-calendar.png" alt="BranDo content calendar" width="49%" />
   <img src="assets/screenshots/content-editor.png" alt="BranDo content editor" width="49%" />
 </p>
 
-Content is planned as part of a calendar workflow and edited through a structured content drawer with business, platform, status and reviewer context.
+The calendar is designed as an operational workspace rather than a passive schedule. Content can be filtered, created, reviewed, updated, and connected to the business and platform context it belongs to.
 
 ### Branded outputs
 
 ![BranDo branded export document](assets/screenshots/export-document.png)
 
-Structured brand and content data can be transformed into reusable business-facing documents and printable exports.
+Structured brand and content data can be reused in printable documents and business-facing exports instead of being recreated manually.
 
 For a feature-by-feature walkthrough, see [`docs/PRODUCT_WALKTHROUGH.md`](docs/PRODUCT_WALKTHROUGH.md).
 
-## Product architecture
+## My role
+
+I led BranDo from product definition through launch and continue to manage its direction and iteration.
+
+My work includes:
+
+- defining the product problem, target workflows, feature priorities, and product structure;
+- designing the information architecture and Hebrew / RTL user experience;
+- mapping complex brand-management processes into clear user flows;
+- designing Brand Hub, content planning, collaboration, permissions, subscriptions, and AI-assisted workflows;
+- making product decisions around progressive disclosure, permissions, empty states, feature gating, and cross-feature consistency;
+- building the full-stack product in Next.js, React, TypeScript, Supabase, and PostgreSQL;
+- integrating authentication, authorization, subscriptions, Google Calendar, exports, and PWA behavior;
+- testing, debugging, reviewing security boundaries, and iterating after real product use.
+
+The technical depth of the project helps me make better product decisions, but the core of my work is defining **what the system should do, for whom, and how the experience should work end to end**.
+
+## Product and UX decisions
+
+### One source of truth for brand context
+
+A core product decision was to avoid treating brand information as one long free-text brief. BranDo breaks it into structured, reusable fields so the same context can support planning, AI workflows, exports, and collaboration.
+
+### Complexity without overwhelming the user
+
+The platform contains businesses, roles, content, approvals, brand strategy, AI workflows, quotas, integrations, and exports. The UX challenge was to keep those systems connected without exposing the full underlying complexity on every screen.
+
+### AI as part of the workflow, not a separate destination
+
+Instead of adding a generic chatbot, Studio AI is grounded in the user's Brand Hub. This makes AI-assisted work part of the product model rather than an isolated feature.
+
+### Permissions as a product experience
+
+Different users may own a workspace, edit full brands, create only content, or review work. Permissions therefore affect navigation, actions, editing states, exports, integrations, and team flows, not only backend access.
+
+### Hebrew-first SaaS UX
+
+BranDo was designed for a Hebrew and RTL environment across desktop and mobile. Layout direction, component behavior, hierarchy, forms, modals, calendars, and generated documents all had to work naturally in RTL rather than being translated after the fact.
+
+## Core product areas
+
+- Multi-business workspaces
+- Structured Brand Hub
+- Content calendar and planning
+- Content creation and editing
+- Comments and approval flows
+- Studio AI and brand-grounded prompt workflows
+- Team roles and business-level access
+- Free / Pro subscriptions and usage limits
+- Google Calendar integration
+- Branded documents and exports
+- Notifications and operational feedback
+- Responsive PWA experience
+- Hebrew / RTL interface
+
+## Product system
+
+BranDo is multi-tenant at two levels:
+
+```text
+Workspace
+   ├── Business A
+   ├── Business B
+   └── Business C
+
+User access = workspace role + business scope
+```
+
+This product model allows a single workspace to manage multiple brands while still supporting users who should only see specific businesses.
+
+See [`docs/AUTHORIZATION_MODEL.md`](docs/AUTHORIZATION_MODEL.md).
+
+## Technical architecture
 
 ```text
 User / Team
@@ -78,120 +160,31 @@ Application services + React Query
 Supabase / PostgreSQL / RLS / RPCs
 ```
 
-The product is multi-tenant at two levels:
-
-```text
-Workspace
-   ├── Business A
-   ├── Business B
-   └── Business C
-
-User access = workspace role + business scope
-```
-
-This lets one workspace manage multiple brands while still supporting users who should only see specific businesses.
-
 See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
-## Selected engineering highlights
+## Selected technical decisions
 
-### 1. Structured Brand Hub as reusable domain context
+### Structured brand context
 
-Brand data is modeled as structured information rather than a free-text profile. The system tracks fields such as:
+A shared completion model evaluates whether brand context is sufficiently complete for downstream workflows. See [`code-samples/brand/brand-completion.ts`](code-samples/brand/brand-completion.ts).
 
-- audience and audience segments;
-- brand voice and values;
-- key messages;
-- services and offers;
-- content pillars;
-- visual language;
-- preferred platforms and content types;
-- words to use / avoid;
-- links and brand assets.
+### Brand-grounded AI workflows
 
-A shared completion model evaluates whether the brand context is sufficiently complete for downstream workflows.
+Brand data is normalized before being used for task-specific prompt logic, platform instructions, and relevance constraints. See [`docs/AI_CONTENT_SYSTEM.md`](docs/AI_CONTENT_SYSTEM.md) and [`code-samples/ai/brand-context.ts`](code-samples/ai/brand-context.ts).
 
-See [`code-samples/brand/brand-completion.ts`](code-samples/brand/brand-completion.ts).
+### Multi-tenant authorization
 
-### 2. Brand-grounded AI workflows
+BranDo distinguishes between `owner`, `full_editor`, `content_editor`, and `viewer`. UI capabilities are reinforced by PostgreSQL Row Level Security and scoped membership rules.
 
-Studio AI does not start from an empty prompt. It assembles normalized brand context first, then uses that context to create richer, more consistent instructions for downstream AI tools.
+### Subscription enforcement
 
-The workflow separates:
+Free / Pro entitlements are enforced beyond UI visibility. Usage-sensitive features can also be constrained through database quotas, triggers, RPCs, and read-only subscription state.
 
-```text
-Brand data
-   ↓
-Normalization
-   ↓
-Readiness / missing-data checks
-   ↓
-Task-specific prompt logic
-   ↓
-Platform-aware instructions
-   ↓
-Quality / relevance constraints
-```
+### Security iteration
 
-The product also contains deterministic content-intelligence logic for content angles, marketing goals, relevance gates, and platform guidance rather than relying entirely on opaque model output.
-
-See [`docs/AI_CONTENT_SYSTEM.md`](docs/AI_CONTENT_SYSTEM.md) and [`code-samples/ai/brand-context.ts`](code-samples/ai/brand-context.ts).
-
-### 3. Multi-tenant authorization
-
-BranDo distinguishes between four application roles:
-
-- `owner`
-- `full_editor`
-- `content_editor`
-- `viewer`
-
-Role-based UI capabilities are only one layer. Database access is also constrained through PostgreSQL Row Level Security, scoped business membership, and server/database-side authorization for sensitive workflows.
-
-See [`docs/AUTHORIZATION_MODEL.md`](docs/AUTHORIZATION_MODEL.md).
-
-### 4. Subscription and usage enforcement
-
-Free / Pro entitlements are not handled only by hiding buttons in the UI. Usage-sensitive features can also be enforced at the database boundary through quotas, triggers, RPCs, and read-only subscription state.
-
-Examples include limits for businesses, monthly content items, AI workflows, exports, team access, and calendar integrations.
-
-### 5. Security as an iterative engineering process
-
-The private project went through several read-only audits and hardening passes covering:
-
-- public-sharing boundaries;
-- RLS policy scope;
-- approval authorization;
-- route-level authentication;
-- OAuth state integrity;
-- permission parity between development and production;
-- export authorization;
-- debug / internal routes;
-- schema drift.
-
-Several issues discovered during those audits were then redesigned or disabled until they could be safely reintroduced.
-
-This showcase documents that process as an engineering case study rather than presenting security as a one-time checkbox.
+The private production project has gone through repeated security and permission reviews covering RLS scope, authentication, OAuth state integrity, approval boundaries, exports, schema drift, and development / production parity.
 
 See [`docs/SECURITY_ENGINEERING.md`](docs/SECURITY_ENGINEERING.md).
-
-## My role
-
-I led the product definition and end-to-end development of BranDo, including:
-
-- translating brand-management workflows into product requirements;
-- UX and information architecture for a Hebrew / RTL SaaS product;
-- domain modeling for businesses, brand profiles, content, permissions and subscriptions;
-- Next.js / React / TypeScript implementation;
-- Supabase / PostgreSQL integration;
-- RLS and permission-model design and iteration;
-- Studio AI / content-intelligence logic;
-- billing and feature-entitlement flows;
-- Google Calendar integration design;
-- testing, debugging, security review and iterative hardening.
-
-AI-assisted development tools were used as part of the implementation workflow. Product decisions, system behavior, architecture, domain rules, QA criteria and integration decisions were directed and reviewed by me.
 
 ## Tech stack
 
@@ -210,33 +203,20 @@ AI-assisted development tools were used as part of the implementation workflow. 
 
 This showcase contains selected, sanitized modules from the private codebase:
 
-- [`brand-completion.ts`](code-samples/brand/brand-completion.ts) — shared brand-readiness logic.
-- [`brand-context.ts`](code-samples/ai/brand-context.ts) — normalization of structured brand data for AI workflows.
-- [`role-capabilities.ts`](code-samples/authorization/role-capabilities.ts) — application-level capability model.
-- [`oauth-state.ts`](code-samples/security/oauth-state.ts) — signed, short-lived OAuth state verification.
+- [`brand-completion.ts`](code-samples/brand/brand-completion.ts) - shared brand-readiness logic.
+- [`brand-context.ts`](code-samples/ai/brand-context.ts) - normalization of structured brand data for AI workflows.
+- [`role-capabilities.ts`](code-samples/authorization/role-capabilities.ts) - application-level capability model.
+- [`oauth-state.ts`](code-samples/security/oauth-state.ts) - signed, short-lived OAuth state verification.
 
-The samples are intentionally limited. This repository is **not** a deployable copy of the private production application.
+The samples are intentionally limited. This repository is not a deployable copy of the private production application.
 
-## Engineering case study
+## Product status
 
-For interview discussion, the most useful areas are:
+**BranDo is a live product.** The production system is running and continues to receive product, UX, performance, security, and feature improvements.
 
-1. designing a two-level multi-tenant permission model;
-2. turning qualitative brand strategy into structured reusable data;
-3. grounding AI workflows in business context instead of generic prompts;
-4. enforcing product entitlements at both UI and database layers;
-5. identifying and correcting security-boundary problems through iterative audits;
-6. keeping a large Hebrew / RTL SaaS product usable across desktop and mobile.
+This public repository is a curated portfolio surface. The private production repository remains the canonical implementation.
 
-See [`docs/ENGINEERING_CASE_STUDY.md`](docs/ENGINEERING_CASE_STUDY.md).
-
-## Development status
-
-BranDo is an evolving product. The private codebase continues to change as features, permission rules, integrations, performance, and security controls are refined.
-
-The public showcase should therefore be treated as a **curated engineering snapshot**, not as the canonical production repository.
-
-## Security & repository scope
+## Security and repository scope
 
 This repository intentionally excludes:
 
@@ -248,13 +228,11 @@ This repository intentionally excludes:
 - destructive database scripts;
 - production migration history;
 - scratch / diagnostic tooling;
-- internal audit artifacts that expose operational details;
+- internal operational artifacts;
 - deployment-only configuration.
-
-The private production repository remains separate from this showcase.
 
 ---
 
 **Project:** BranDo  
-**Status:** Active development  
-**Focus:** Full-stack SaaS · product engineering · multi-tenant authorization · AI-assisted workflows
+**Status:** Live product  
+**Focus:** Product management · UI/UX · SaaS product design · full-stack execution
